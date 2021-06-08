@@ -1,0 +1,67 @@
+<div class="container">
+  <h1 class="login_header">Register</h1>
+
+  <div class="form">
+    <form (ngSubmit)="register(form)" [formGroup]="form">
+      <label>
+        <h4 class="bold">First Name</h4>
+        <input
+          [class.error]="firstNameControl.invalid && submitted || error"
+          class="form__input"
+          formControlName="firstName"
+          type="text"
+        />
+        <div *ngIf="firstNameControl.invalid && submitted" class="form__error">
+          <p>First Name required</p>
+        </div>
+      </label>
+
+      <label>
+        <h4 class="bold">Last Name</h4>
+        <input
+          [class.error]="lastNameControl.invalid && submitted || error"
+          class="form__input"
+          formControlName="lastName"
+          type="text"
+        />
+        <div *ngIf="lastNameControl.invalid && submitted" class="form__error">
+          <p>Last Name required</p>
+        </div>
+      </label>
+      <label>
+        <h4 class="bold">Email</h4>
+        <input
+          [class.error]="emailControl.invalid && submitted || error"
+          class="form__input"
+          formControlName="email"
+          type="text"
+        />
+        <div *ngIf="emailControl.invalid && submitted" class="form__error">
+          <p>Email required</p>
+        </div>
+      </label>
+
+      <label>
+        <h4 class="bold">Password</h4>
+        <input
+          [class.error]="passwordControl.invalid && submitted || error"
+          class="form__input"
+          formControlName="password"
+          type="password"
+        />
+        <div *ngIf="passwordControl.invalid && submitted" class="form__error">
+          <p>Password required</p>
+        </div>
+        <div *ngIf="error && !(passwordControl.invalid && submitted)" class="form__error">
+          <p>Password invalid</p>
+        </div>
+      </label>
+
+      <div class="form__submit">
+        <button class="btn " type="submit">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
