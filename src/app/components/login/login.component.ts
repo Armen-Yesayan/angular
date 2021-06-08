@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
+import {SocialAuthService} from "angularx-social-login";
+import {FacebookLoginProvider} from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
+              private socialAuthService: SocialAuthService,
               private router: Router) {}
 
   ngOnInit(): void {}
@@ -48,4 +51,8 @@ export class LoginComponent implements OnInit {
       );
     }
   }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+}
 }

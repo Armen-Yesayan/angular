@@ -12,6 +12,9 @@ import { HeaderComponent } from './components/header/header.component';
 import {AdminComponent} from "./container/admin/admin.component";
 import {AuthGuard} from "./guards/auth.guards";
 
+import { SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
+import {FacebookLoginProvider } from 'angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +29,23 @@ import {AuthGuard} from "./guards/auth.guards";
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
